@@ -38,16 +38,12 @@ public class Util {
     }
 
     public static String getInverseSign(String sign) {
-        String result = "";
-
         if ("]".equals(sign)) {
-            result = "[";
+            return "[";
         } else if ("}".equals(sign)) {
-            result = "{";
+            return "{";
         } else if (")".equals(sign)) {
-            result = "(";
-        }
-
-        return result;
+            return "(";
+        } else return "";
     }
 }
