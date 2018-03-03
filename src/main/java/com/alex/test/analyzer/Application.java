@@ -1,4 +1,4 @@
-package com.alex.test.textanalyzer;
+package com.alex.test.analyzer;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
@@ -7,7 +7,7 @@ import org.springframework.context.annotation.Configuration;
 
 @Configuration
 @EnableAutoConfiguration
-//@ComponentScan(basePackageClasses = "com.alex.test.textanalyzer")
+@ComponentScan(basePackages = "com.alex.test.analyzer")
 public class Application {
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
