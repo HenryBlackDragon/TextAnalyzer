@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface WordsService {
 
-    List<Word> getListWords();
+    List<Word> getListWords(String path);
 
-    String checkFile();
+    String checkFile(String path);
 }

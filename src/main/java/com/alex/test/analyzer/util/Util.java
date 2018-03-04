@@ -1,9 +1,9 @@
 package com.alex.test.analyzer.util;
 
-import java.io.BufferedReader;
-import java.io.File;
-import java.io.FileReader;
 import java.io.IOException;
+import java.net.URISyntaxException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
@@ -15,14 +15,12 @@ public class Util {
 
     private static List<String> exclude() {
         List<String> excludeWords = new ArrayList<>();
-        File file = new File(Util.class.getResource("/exclude_words.txt").getFile());
 
-        try (BufferedReader bfdReader = new BufferedReader(new FileReader(file))) {
-            String str;
-            while ((str = bfdReader.readLine()) != null) {
-                excludeWords.addAll(Arrays.stream(str.split(",")).collect(Collectors.toList()));
-            }
-        } catch (IOException e) {
+        try {
+            String txt = new String(Files.readAllBytes(
+                    Paths.get(ClassLoader.getSystemResource("exclude_words.txt").toURI())));
+            excludeWords.addAll(Arrays.stream(txt.split(",")).collect(Collectors.toList()));
+        } catch (IOException | URISyntaxException e) {
             e.printStackTrace();
         }
 
@@ -33,8 +31,21 @@ public class Util {
         return excludeWords;
     }
 
-    public static String readFile() {
-        return null;
+    public static String readFile(String path) {
+        String result = "";
+
+        try {
+            if (Files.isReadable(Paths.get(path))) {
+                result = new String(Files.readAllBytes(Paths.get(path)));
+            } else {
+                result = new String(Files.readAllBytes(
+                        Paths.get(ClassLoader.getSystemResource("test_text.txt").toURI())));
+            }
+        } catch (IOException | URISyntaxException e) {
+            e.printStackTrace();
+        }
+
+        return result.toLowerCase();
     }
 
     public static String getInverseSign(String sign) {

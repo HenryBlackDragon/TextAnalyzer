@@ -16,13 +16,10 @@ import java.util.stream.Collectors;
 public class WordsServiceImpl implements WordsService {
 
     @Override
-    public List<Word> getListWords() {
-
-        String s = "мама мыла раму мама мыла мама";
-
+    public List<Word> getListWords(String path) {
         List<String> wordsList = new ArrayList<>();
-        Matcher matcher = Pattern.compile("\\b[а-я]+\\b")
-                .matcher(s.toLowerCase());
+        Matcher matcher = Pattern.compile("\\b[а-я|а-я\\-а-я]+\\b")
+                .matcher(Util.readFile(path));
 
         while (matcher.find()) {
             wordsList.add(matcher.group());
@@ -45,12 +42,11 @@ public class WordsServiceImpl implements WordsService {
 
 
     @Override
-    public String checkFile() {
+    public String checkFile(String path) {
         Stack<String> stack = new Stack<>();
-        String s = "[][]{{}{}";
 
         Matcher matcher = Pattern.compile("[\\[\\](){}]+?")
-                .matcher(s.toLowerCase());
+                .matcher(Util.readFile(path));
 
         while (matcher.find()) {
             if (!stack.isEmpty() && stack.peek().equals(Util.getInverseSign(matcher.group()))) {

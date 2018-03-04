@@ -5,6 +5,9 @@ import org.springframework.boot.autoconfigure.EnableAutoConfiguration;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
+import java.nio.file.Files;
+import java.nio.file.Paths;
+
 @Configuration
 @EnableAutoConfiguration
 @ComponentScan(basePackages = "com.alex.test.analyzer")

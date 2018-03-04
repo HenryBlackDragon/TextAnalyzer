@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import javax.ws.rs.QueryParam;
 import java.util.List;
 
 @Controller
@@ -19,13 +20,13 @@ public class AnalyzerController {
 
     @RequestMapping(path = "/list", method = RequestMethod.GET)
     @ResponseBody
-    public List<Word> getWords() {
-        return wordsService.getListWords();
+    public List<Word> getWords(@QueryParam("path") String path) {
+        return wordsService.getListWords(path);
     }
 
     @RequestMapping(path = "/check", method = RequestMethod.GET)
     @ResponseBody
-    public String getCheckFile() {
-        return wordsService.checkFile();
+    public String getCheckFile(@QueryParam("path") String path) {
+        return wordsService.checkFile(path);
     }
 }
