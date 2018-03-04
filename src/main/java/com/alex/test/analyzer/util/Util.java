@@ -13,6 +13,7 @@ public class Util {
 
     private static List<String> excludeWords = exclude();
 
+    // создание списка, состоящего из союзов, предлогов, местоимений
     private static List<String> exclude() {
         List<String> excludeWords = new ArrayList<>();
 
@@ -34,6 +35,8 @@ public class Util {
     public static String readFile(String path) {
         String result = "";
 
+        // считывание файла, если по указанному пути существует файл,
+        // то считывает его, иначе считывает из папки ресурсов
         try {
             if (Files.isReadable(Paths.get(path))) {
                 result = new String(Files.readAllBytes(Paths.get(path)));

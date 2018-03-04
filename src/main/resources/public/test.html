@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body ng-app="AppSpring">
+
+<div ng-controller="AppController">
+    <table border="1" width="100%" cellpadding="5">
+        <thead>
+        <tr>
+            <th>Word</th>
+            <th>Count</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr ng-repeat="item in websites">
+            <th>{{item.name}}</th>
+            <th>{{item.count}}</th>
+        </tr>
+        </tbody>
+    </table>
+</div>
+
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.6.9/angular.min.js"></script>
+<script type="text/javascript" src="js/test.js"></script>
+</body>
+</html>
